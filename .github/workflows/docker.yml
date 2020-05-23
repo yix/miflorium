@@ -18,5 +18,5 @@ jobs:
       - name: build
         run: |
           docker buildx build \
-            --tag mcgunn/miflora-poller:latest \
+            --tag mcgunn/miflora-poller:latest --push \
             --platform linux/amd64,linux/arm/v7,linux/arm64 .
