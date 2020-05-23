@@ -43,3 +43,11 @@ python miflorium.py XX:XX:XX:XX:XX:X1 XX:XX:XX:XX:XX:X2
 docker run --net=host --cap-add=NET_ADMIN -ti miflora-poller:latest --scan
 docker run --net=host --cap-add=NET_ADMIN -ti miflora-poller:latest XX:XX:XX:XX:XX:X1 XX:XX:XX:XX:XX:X1
 ```
+
+#### Build your own docker image
+```$bash
+docker build -t miflora-poller .
+
+# Based on Debian buster (slightly larger)
+docker build -t miflora-poller -f Dockerfile.buster .
+```
