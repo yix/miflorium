@@ -1,6 +1,11 @@
 # Miflorium
 MiFlora BLE plant sensor status poller
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/mcgunn/miflora-poller.svg?style=plastic)](https://hub.docker.com/r/mcgunn/miflora-poller/)
+[![Docker Build](https://img.shields.io/docker/cloud/build/mcgunn/miflora-poller.svg?style=plastic)](https://hub.docker.com/r/mcgunn/miflora-poller/)
+[![Docker Build](https://img.shields.io/docker/cloud/automated/mcgunn/miflora-poller.svg?style=plastic)](https://hub.docker.com/r/mcgunn/miflora-poller/)
+
+
 #### Example usage using Python 3
 ```$bash
 # setup environment
