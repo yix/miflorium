@@ -1,0 +1,21 @@
+FROM python:3.8.3-slim-buster as builder
+# requires --cap-add=NET_ADMIN to docker run
+WORKDIR /build
+COPY requirements.txt .
+RUN set +x \
+ && apt update \
+ && apt install -y build-essential libglib2.0-dev \
+ && pip wheel -r requirements.txt
+
+FROM python:3.8.3-slim-buster
+WORKDIR /app
+COPY --from=builder /build/*.whl /build/requirements.txt ./
+COPY --from=builder /usr/lib/arm-linux-gnueabihf/libglib-2.0.so.0 /usr/lib/arm-linux-gnueabihf/
+COPY miflorium.py .
+RUN set +x \
+ && pip install *.whl
+
+USER nobody
+ENTRYPOINT ["/usr/local/bin/python", "miflorium.py"]
+CMD ["--scan"]
+# --scan requires --user=root to docker run
