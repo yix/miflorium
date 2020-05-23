@@ -15,8 +15,10 @@ jobs:
         uses: crazy-max/ghaction-docker-buildx@v1
         with:
           version: latest
-      - name: build
+      - name: login to docker hub
+          run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      - name: build multi-arch images
         run: |
-          docker buildx build \
-            --tag mcgunn/miflora-poller:latest --push \
+          docker buildx build --push \
+            --tag mcgunn/miflora-poller:latest \
             --platform linux/amd64,linux/arm/v7,linux/arm64 .
