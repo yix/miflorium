@@ -1,10 +1,11 @@
-FROM python:3.6.10-alpine3.11 as builder
+ARG ARCH=
+FROM ${ARCH}python:3.6.10-alpine3.11 as builder
 # requires --cap-add=NET_ADMIN to docker run
 WORKDIR /build
 COPY requirements.txt .
 RUN apk --no-cache add alpine-sdk glib-dev && pip wheel -r requirements.txt
 
-FROM python:3.6.10-alpine3.11
+FROM ${ARCH}python:3.6.10-alpine3.11
 
 WORKDIR /app
 COPY --from=builder /build/*.whl ./
